@@ -2,7 +2,6 @@ package com.example.android.architecture.blueprints.todoapp
 
 import com.example.android.architecture.blueprints.todoapp.data.Task
 import com.example.android.architecture.blueprints.todoapp.statistics.getActiveAndCompletedStats
-import junit.framework.Assert.assertEquals
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
