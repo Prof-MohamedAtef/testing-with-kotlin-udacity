@@ -10,6 +10,7 @@ import com.example.android.architecture.blueprints.todoapp.tasks.TasksViewModel
 import org.hamcrest.CoreMatchers.*
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -17,18 +18,23 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class TasksViewModelTest {
 
+    private lateinit var tasksViewModel: TasksViewModel
+
+    @Before
+    fun setupViewModel() {
+        tasksViewModel = TasksViewModel(ApplicationProvider.getApplicationContext())
+    }
+
     /*
     testing livedata
     add this Rule
      */
 
-    val tasksViewModel = TasksViewModel(ApplicationProvider.getApplicationContext())
-
     @get:Rule
-    var instantExecutorRule=InstantTaskExecutorRule()
+    var instantExecutorRule = InstantTaskExecutorRule()
 
     @Test
-    fun addNewTask_setsNewTaskEvent(){
+    fun addNewTask_setsNewTaskEvent() {
         // Given a fresh ViewModel
 
         // Adding New Task
@@ -38,7 +44,7 @@ class TasksViewModelTest {
            when change happens regarding added tasks
            Then, the new task event is triggered
          */
-        val value= tasksViewModel.newTaskEvent.getOrAwaitValue();
+        val value = tasksViewModel.newTaskEvent.getOrAwaitValue();
 
         assertThat(
             value.getContentIfNotHandled(), (not(nullValue()))
