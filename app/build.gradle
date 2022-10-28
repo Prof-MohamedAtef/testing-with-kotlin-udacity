@@ -20,11 +20,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    testOptions {
-        unitTests {
-            includeAndroidResources = true
-        }
+
+    testOptions.unitTests {
+        includeAndroidResources = true
     }
+
     sourceSets {
         main { java.srcDirs = ['src/main/java'] }
         test { java.srcDirs = ['src/test/java'] }
@@ -83,7 +83,7 @@ android {
         testImplementation "androidx.test.ext:junit:$androidXTestExtKotlinRunnerVersion"
         androidTestImplementation "androix.test:core-ktx:$androidXTestCoreVersion"
         testImplementation 'org.robolectric:robolectric:4.8'
-        testImplementation 'androidx.arch.core:core-testing:2.0.1'
+        testImplementation "androidx.arch.core:core-testing:$archTestingVersion"
         testImplementation "androidx.test.ext:junit-ktx:$androidXTestExtKotlinRunnerVersion"
         // AndroidX Test - Instrumented testing
         androidTestImplementation "androidx.test.ext:junit:$androidXTestExtKotlinRunnerVersion"
