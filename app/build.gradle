@@ -20,7 +20,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
     sourceSets {
         main { java.srcDirs = ['src/main/java'] }
         test { java.srcDirs = ['src/test/java'] }
@@ -76,11 +80,15 @@ android {
 
         // Dependencies for local unit tests
         testImplementation "junit:junit:$junitVersion"
+        testImplementation "androidx.test.ext:junit:$androidXTestExtKotlinRunnerVersion"
+        androidTestImplementation "androix.test:core-ktx:$androidXTestCoreVersion"
+        testImplementation 'org.robolectric:robolectric:4.8'
         testImplementation 'androidx.arch.core:core-testing:2.0.1'
 
         // AndroidX Test - Instrumented testing
         androidTestImplementation "androidx.test.ext:junit:$androidXTestExtKotlinRunnerVersion"
         androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+
 
         androidTestImplementation 'androidx.test:rules:1.1.1'
         androidTestImplementation 'androidx.test:runner:1.1.2-alpha02'
@@ -93,4 +101,7 @@ android {
         // Kotlin
         implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
         implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
+
+        //roboelectric
+
     }
