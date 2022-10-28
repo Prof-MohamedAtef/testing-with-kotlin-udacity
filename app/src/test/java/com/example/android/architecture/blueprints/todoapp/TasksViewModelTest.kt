@@ -18,6 +18,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class TasksViewModelTest {
 
+    // Subject under test
     private lateinit var tasksViewModel: TasksViewModel
 
     @Before
@@ -28,6 +29,7 @@ class TasksViewModelTest {
     /*
     testing livedata
     add this Rule
+    // Executes each task synchronously using Architecture Components.
      */
 
     @get:Rule
@@ -52,15 +54,12 @@ class TasksViewModelTest {
     }
 
     @Test
-    fun setFilterAllTasks_tasksAddViewVisible() {
-
-        // Given a fresh ViewModel
+    fun getTasksAddViewVisible() {
 
         // When the filter type is ALL_TASKS
         tasksViewModel.setFiltering(TasksFilterType.ALL_TASKS)
 
         // Then the "Add task" action is visible
         assertThat(tasksViewModel.tasksAddViewVisible.getOrAwaitValue(), `is`(true))
-
     }
 }
