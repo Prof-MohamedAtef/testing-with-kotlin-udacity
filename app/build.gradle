@@ -88,6 +88,7 @@ android {
         // AndroidX Test - Instrumented testing
         androidTestImplementation "androidx.test.ext:junit:$androidXTestExtKotlinRunnerVersion"
         androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+        testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
 
 
         androidTestImplementation 'androidx.test:rules:1.1.1'
