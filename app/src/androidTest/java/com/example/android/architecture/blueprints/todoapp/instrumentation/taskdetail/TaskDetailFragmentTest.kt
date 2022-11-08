@@ -45,6 +45,5 @@ class TaskDetailFragmentTest {
 
         launchFragmentInContainer<TaskDetailFragment>(bundle, R.style.AppTheme)
 
-        Thread.sleep(3000)
     }
 }
