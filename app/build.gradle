@@ -31,78 +31,102 @@ android {
         androidTest { java.srcDirs = ['src/androidTest/java'] }
     }
 
-        //dataBinding {
-        //    enabled = true
-        //    enabledForTests = true
-        //}
-        buildFeatures {
-            dataBinding true
-        }
-        //Compile-Options Block
-        kotlinOptions {
-            jvmTarget = "1.8"
-        }
-
-        compileOptions {
-            sourceCompatibility JavaVersion.VERSION_1_8
-            targetCompatibility JavaVersion.VERSION_1_8
-        }
+    //dataBinding {
+    //    enabled = true
+    //    enabledForTests = true
+    //}
+    buildFeatures {
+        dataBinding true
+    }
+    //Compile-Options Block
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 
-    dependencies {
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.0'
+        exclude 'META-INF/LGPL2.1'
+        exclude("META-INF/*.kotlin_module")
+    }
+}
 
-        // App dependencies
-        implementation "androidx.appcompat:appcompat:$appCompatVersion"
-        implementation "androidx.cardview:cardview:$cardVersion"
-        implementation "com.google.android.material:material:$materialVersion"
-        implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
-        implementation "androidx.annotation:annotation:$androidXAnnotations"
-        implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
-        implementation "com.jakewharton.timber:timber:$timberVersion"
-        implementation "androidx.legacy:legacy-support-v4:$androidXLegacySupport"
-        implementation "androidx.room:room-runtime:$roomVersion"
+dependencies {
+
+    // App dependencies
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.cardview:cardview:$cardVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+    implementation "androidx.annotation:annotation:$androidXAnnotations"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    implementation "com.jakewharton.timber:timber:$timberVersion"
+    implementation "androidx.legacy:legacy-support-v4:$androidXLegacySupport"
+    implementation "androidx.room:room-runtime:$roomVersion"
 //        testImplementation 'org.junit.jupiter:junit-jupiter'
-        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
-        testImplementation project(path: ':app')
-        kapt "androidx.room:room-compiler:$roomVersion"
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testImplementation project(path: ':app')
+    androidTestImplementation project(path: ':app')
+    kapt "androidx.room:room-compiler:$roomVersion"
 
-        // Architecture Components
-        implementation "androidx.room:room-runtime:$roomVersion"
-        kapt "androidx.room:room-compiler:$roomVersion"
-        implementation "androidx.room:room-ktx:$roomVersion"
-        implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
-        kapt "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion"
-        implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion"
-        implementation "androidx.lifecycle:lifecycle-livedata-ktx:$archLifecycleVersion"
-        implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
-        implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
-
-
-        // Dependencies for local unit tests
-        testImplementation "junit:junit:$junitVersion"
-        testImplementation "androidx.test.ext:junit:$androidXTestExtKotlinRunnerVersion"
-        androidTestImplementation "androix.test:core-ktx:$androidXTestCoreVersion"
-        testImplementation 'org.robolectric:robolectric:4.8'
-        testImplementation "androidx.arch.core:core-testing:$archTestingVersion"
-        testImplementation "androidx.test.ext:junit-ktx:$androidXTestExtKotlinRunnerVersion"
-        // AndroidX Test - Instrumented testing
-        androidTestImplementation "androidx.test.ext:junit:$androidXTestExtKotlinRunnerVersion"
-        androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
-        testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+    // Architecture Components
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
+    kapt "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$archLifecycleVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
 
-        androidTestImplementation 'androidx.test:rules:1.1.1'
-        androidTestImplementation 'androidx.test:runner:1.1.2-alpha02'
-        androidTestImplementation 'androidx.test.ext:junit:1.1.0'
-        androidTestImplementation "androidx.test.espresso:espresso-intents:$espressoVersion"
+    // Dependencies for local unit tests
+    testImplementation "androidx.test.ext:junit:$androidXTestExtKotlinRunnerVersion"
+//        androidTestImplementation "androix.test:core-ktx:$androidXTestCoreVersion"
+    testImplementation 'org.robolectric:robolectric:4.8'
+    testImplementation "androidx.arch.core:core-testing:$archTestingVersion"
+    testImplementation "androidx.test.ext:junit-ktx:$androidXTestExtKotlinRunnerVersion"
+    // AndroidX Test - Instrumented testing
+    androidTestImplementation "androidx.test.ext:junit:$androidXTestExtKotlinRunnerVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
 
-        //hamcrest for matching
-        testImplementation "org.hamcrest:hamcrest-all:1.3"
 
-        // Kotlin
-        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-        implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
+    // Dependencies for local and Instrumented unit tests
+    androidTestImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
 
-        //roboelectric
+    // Testing code should not be included in the main code.
+    // Once https://issuetracker.google.com/128612536 is fixed this can be fixed.
 
-    }
+    implementation "androidx.fragment:fragment-testing:$fragmentVersion"
+//        implementation "androidx.test:core:$androidXTestCoreVersion"
+
+
+    androidTestImplementation 'androidx.test:rules:1.1.1'
+    androidTestImplementation 'androidx.test:runner:1.1.2-alpha02'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$espressoVersion"
+
+    //hamcrest for matching
+    testImplementation "org.hamcrest:hamcrest-all:1.3"
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
+
+    //roboelectric
+
+}
