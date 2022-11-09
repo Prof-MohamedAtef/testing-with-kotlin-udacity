@@ -12,10 +12,7 @@ import com.example.android.architecture.blueprints.todoapp.data.source.FakeTestR
 import com.example.android.architecture.blueprints.todoapp.getOrAwaitValue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.TestCoroutineContext
-import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.setMain
+import kotlinx.coroutines.test.*
 import org.hamcrest.CoreMatchers.*
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
@@ -43,7 +40,6 @@ class TasksViewModelTest {
 
     @Before
     fun setupViewModel() {
-
         tasksRepository= FakeTestRepository()
         val task1=Task("Title1", "Description1")
         val task2=Task("Title3", "Description2", true)

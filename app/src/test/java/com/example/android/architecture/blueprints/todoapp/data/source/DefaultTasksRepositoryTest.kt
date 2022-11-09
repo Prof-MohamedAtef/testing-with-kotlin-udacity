@@ -1,5 +1,6 @@
 package com.example.android.architecture.blueprints.todoapp.data.source
 
+import com.example.android.architecture.blueprints.todoapp.MainCoroutineRule
 import com.example.android.architecture.blueprints.todoapp.data.Result
 import com.example.android.architecture.blueprints.todoapp.data.Task
 import com.example.android.architecture.blueprints.todoapp.data.source.local.TasksLocalDataSource
@@ -9,6 +10,7 @@ import kotlinx.coroutines.test.runBlockingTest
 import org.hamcrest.core.IsEqual
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 
 class DefaultTasksRepositoryTest {
@@ -27,6 +29,9 @@ class DefaultTasksRepositoryTest {
     //Class under test
     private lateinit var tasksRepository: DefaultTasksRepository
 
+    @get:Rule
+    var mainCoroutineRule=MainCoroutineRule()
+
     @Before
     fun createRepository() {
         tasksRemoteDataSource = FakeDataSource(remoteTasks.toMutableList())
@@ -35,14 +40,14 @@ class DefaultTasksRepositoryTest {
         tasksRepository = DefaultTasksRepository(
             tasksRemoteDataSource,
             tasksLocalDataSource,
-            Dispatchers.Unconfined
+            Dispatchers.Main
         )
     }
 
 
     @ExperimentalCoroutinesApi
     @Test
-    fun getTasks_requestAllTasksFromRemoteDataSource() = runBlockingTest{
+    fun getTasks_requestAllTasksFromRemoteDataSource() = mainCoroutineRule.runBlockingTest{
         //When tasks are requested from the tasks repository
         val tasks=tasksRepository.getTasks(true) as Result.Success
         // Then tasks are loaded from a remote data source
