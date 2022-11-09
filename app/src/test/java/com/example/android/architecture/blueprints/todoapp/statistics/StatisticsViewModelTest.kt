@@ -45,4 +45,15 @@ class StatisticsViewModelTest{
         mainCoroutineRule.resumeDispatcher()
         assertThat(statisticsViewModel.dataLoading.getOrAwaitValue(), `is`(false))
     }
+
+    @Test
+    fun loadStatisticsWhenTasksAreUnavailable_callErrorToDisplay(){
+        //make repo return error
+        tasksRepository.setReturnError(true)
+        statisticsViewModel.refresh()
+        //an error is shown
+
+        assertThat(statisticsViewModel.empty.getOrAwaitValue(), `is`(true))
+        assertThat(statisticsViewModel.error.getOrAwaitValue(), `is`(true))
+    }
 }

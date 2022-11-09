@@ -54,8 +54,8 @@ class TasksFragmentTest{
         }
 
         // WHEN - Clicking on first item
-        onView(withId(R.id.tasks_list)).perform(RecyclerViewActions.actionOnItem<RecyclerView.ViewHolder>(
-            hasDescendant(withText("TITLE1")),click()))
+//        onView(withId(R.id.tasks_list)).perform(RecyclerViewActions.actionOnItem<RecyclerView.ViewHolder>(
+//            hasDescendant(withText("TITLE1")),click()))
 
         // THEN - verify that we navigate to the first detail screen
         verify(navController).navigate(
