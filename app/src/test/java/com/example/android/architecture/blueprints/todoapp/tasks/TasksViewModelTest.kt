@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.android.architecture.blueprints.todoapp.Event
+import com.example.android.architecture.blueprints.todoapp.MainCoroutineRule
 import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.ServiceLocator.tasksRepository
 import com.example.android.architecture.blueprints.todoapp.data.Task
@@ -29,6 +30,8 @@ import org.junit.runner.RunWith
 class TasksViewModelTest {
 
 
+    @get:Rule
+    var mainCoroutineRule=MainCoroutineRule()
 
     //add fake test ( Test Double) Repository
 
