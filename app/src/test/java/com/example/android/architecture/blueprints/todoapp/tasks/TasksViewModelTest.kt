@@ -28,8 +28,7 @@ import org.junit.runner.RunWith
 @ExperimentalCoroutinesApi
 class TasksViewModelTest {
 
-    // testing coroutines
-    val testDispatcher:TestCoroutineDispatcher= TestCoroutineDispatcher()
+
 
     //add fake test ( Test Double) Repository
 
@@ -38,18 +37,6 @@ class TasksViewModelTest {
     // Subject under test
     private lateinit var tasksViewModel: TasksViewModel
 
-
-    //testingCoroutines
-    @Before
-    fun setupDispatcher(){
-        Dispatchers.setMain(testDispatcher)
-    }
-
-    @After
-    fun tearDownDispatcher(){
-        Dispatchers.resetMain()
-        testDispatcher.cleanupTestCoroutines()
-    }
 
     @Before
     fun setupViewModel() {
